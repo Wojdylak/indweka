@@ -1,14 +1,8 @@
-version: '3.8'
-
 services:
   database:
     ports:
-      - "5432"
+      - 5432
 
   web:
     ports:
-      - "80"
-
-  mailer:
-    image: schickling/mailcatcher
-    ports: [1025, 1080]
+      - 80
