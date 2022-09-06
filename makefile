@@ -1,6 +1,6 @@
 setfacl:
-	setfacl -dR -m u:www-data:rwX -m u:$(whoami):rwX var \
-	setfacl -R -m u:www-data:rwX -m u:$(whoami):rwX var
+	setfacl -dR -m u:www-data:rwX -m u:`whoami`:rwX var; \
+	setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX var;
 
 up:
 	docker-compose up -d
