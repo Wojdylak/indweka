@@ -15,4 +15,7 @@ RUN wget https://getcomposer.org/download/2.3.10/composer.phar \
 
 COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
 
+RUN useradd docker \
+    && install -d -m 0755 -o docker -g docker /home/docker;
+
 CMD ["apache2-foreground"]

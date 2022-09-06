@@ -13,6 +13,7 @@ services:
   web:
     build:
       context: ./docker/php
+    user: docker
     volumes:
       - ./:/var/www
     working_dir: /var/www
