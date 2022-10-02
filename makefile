@@ -9,4 +9,4 @@ down:
 	docker-compose down
 
 bash:
-	docker-compose exec web bash
+	docker-compose exec php bash

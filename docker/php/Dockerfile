@@ -1,21 +1,14 @@
-FROM php:8.1.8-apache
-
-RUN a2enmod rewrite
+FROM php:8.1-fpm
 
 RUN apt-get update \
-    && apt-get install -y libzip-dev libpq-dev wget --no-install-recommends \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*;
+    && apt-get install -y libzip-dev libpq-dev --no-install-recommends;
 
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo pgsql pdo_pgsql zip;
 
-RUN wget https://getcomposer.org/download/2.3.10/composer.phar \
-    && mv composer.phar /usr/bin/composer && chmod +x /usr/bin/composer;
-
-COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN useradd docker \
     && install -d -m 0755 -o docker -g docker /home/docker;
 
-CMD ["apache2-foreground"]
+WORKDIR /var/www

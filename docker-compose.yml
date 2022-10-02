@@ -10,14 +10,18 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data:rw
 
-  web:
+  nginx:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./:/var/www
+
+  php:
     build:
       context: ./docker/php
     user: docker
     volumes:
       - ./:/var/www
-    working_dir: /var/www
-
 
 volumes:
   db-data:
