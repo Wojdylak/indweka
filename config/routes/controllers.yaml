@@ -1,0 +1,4 @@
+post_module:
+  resource: controllers/post.yaml
+  prefix: /post
+  name_prefix: post_
