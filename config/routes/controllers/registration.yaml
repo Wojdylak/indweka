@@ -1,0 +1,4 @@
+register:
+  path: /register
+  methods: GET|POST
+  controller: App\Controller\RegistrationController::register

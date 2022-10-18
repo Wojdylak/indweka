@@ -1,3 +1,13 @@
+registration_module:
+  resource: controllers/registration.yaml
+
+login_module:
+  resource: controllers/login.yaml
+
+logout:
+  path: /logout
+  methods: GET
+
 post_module:
   resource: controllers/post.yaml
   prefix: /post

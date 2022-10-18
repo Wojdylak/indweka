@@ -1,0 +1,4 @@
+login:
+  path: /login
+  methods: GET|POST
+  controller: App\Controller\LoginController::index
