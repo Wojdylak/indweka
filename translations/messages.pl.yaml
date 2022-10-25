@@ -1,0 +1,8 @@
+app:
+  register:
+    title: 'Rejestracja'
+    email: 'Email'
+    plain_password: 'Hasło'
+    agree_terms: 'Akceptacja regulaminu'
+    button:
+      submit: 'Załóż konto'
