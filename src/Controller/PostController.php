@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DTO\Post as PostDTO;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
@@ -22,11 +23,12 @@ class PostController extends AbstractController
 
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $post = new Post();
-        $form = $this->createForm(PostType::class, $post);
+        $postDTO = new PostDTO();
+        $form = $this->createForm(PostType::class, $postDTO);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $post = Post::fromPostDTO($postDTO);
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -34,7 +36,7 @@ class PostController extends AbstractController
         }
 
         return $this->renderForm('post/new.html.twig', [
-            'post' => $post,
+            'post' => $postDTO,
             'form' => $form,
         ]);
     }
@@ -48,10 +50,13 @@ class PostController extends AbstractController
 
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(PostType::class, $post);
+        $postDTO = PostDTO::fromEntity($post);
+        $form = $this->createForm(PostType::class, $postDTO);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $post = Post::fromPostDTO($postDTO, $post);
+            $entityManager->persist($post);
             $entityManager->flush();
 
             return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
