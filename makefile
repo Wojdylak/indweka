@@ -3,10 +3,10 @@ setfacl:
 	setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX var;
 
 up:
-	docker-compose up -d
+	docker compose up -d
 
 down:
-	docker-compose down
+	docker compose down
 
 bash:
-	docker-compose exec php bash
+	docker compose exec php bash
