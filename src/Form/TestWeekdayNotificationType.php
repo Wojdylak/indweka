@@ -8,6 +8,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 
 class TestWeekdayNotificationType extends AbstractType
 {
@@ -27,23 +29,29 @@ class TestWeekdayNotificationType extends AbstractType
             $weekday = $weekdayNotification->getWeekday();
             $notification = $weekdayNotification->getNotification();
 
-            $dataCollection[$weekday->name . 'X' . $notification->value] = $weekdayNotification;
+            $dataCollection[$weekday->value . 'X' . $notification->value] = $weekdayNotification;
         }
 
 
         foreach (Weekdays::cases() as $weekday) {
             foreach (Notification::cases() as $notification)
                 $form->add(
-                    $weekday->name . 'X' . $notification->value,
+                    $weekday->value . 'X' . $notification->value,
                     WeekdayNotificationType::class,
                     [
-                        'label' => $weekday->name . ' ' . $notification->value,
+                        'label' => $weekday->name . ' ' . $notification->name,
                         'required' => false,
                         'weekday' => $weekday,
                         'notification' => $notification,
-                        'data' => $dataCollection[$weekday->name . 'X' . $notification->value] ?? null,
+                        'data' => $dataCollection[$weekday->value . 'X' . $notification->value] ?? null,
                     ]
                 );
         }
+    }
+
+    public function finishView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['weekdays'] = Weekdays::cases();
+        $view->vars['notifications'] = Notification::cases();
     }
 }
