@@ -12,3 +12,8 @@ post_module:
   resource: controllers/post.yaml
   prefix: /post
   name_prefix: post_
+
+test_module:
+  resource: controllers/test.yaml
+  prefix: /test
+  name_prefix: test_

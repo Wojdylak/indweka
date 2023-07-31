@@ -1,0 +1,4 @@
+App\DTO\Post:
+    properties:
+        title:
+            - NotBlank: ~

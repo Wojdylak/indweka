@@ -1,0 +1,24 @@
+index:
+  path: /
+  methods: GET
+  controller: App\Controller\TestController::index
+
+new:
+  path: /new
+  methods: GET|POST
+  controller: App\Controller\TestController::new
+
+show:
+  path: /{id<\d+>}
+  methods: GET
+  controller: App\Controller\TestController::show
+
+edit:
+  path: /{id<\d+>}/edit
+  methods: GET|POST
+  controller: App\Controller\TestController::edit
+
+delete:
+  path: /{id<\d+>}
+  methods: DELETE
+  controller: App\Controller\TestController::delete
