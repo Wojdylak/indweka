@@ -11,4 +11,9 @@ enum Weekdays: string
 //    case FRIDAY = 'friday';
 //    case SATURDAY = 'saturday';
 //    case SUNDAY = 'sunday';
+
+    public function isEqual(Weekdays $weekdays): bool
+    {
+        return $this->value === $weekdays->value;
+    }
 }

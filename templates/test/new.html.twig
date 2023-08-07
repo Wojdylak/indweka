@@ -2,7 +2,7 @@
 
 {% block title %}New Test{% endblock %}
 
-{% form_theme form _self %}
+{% form_theme form 'test/_form_theme.html.twig' %}
 
 {% block body %}
     <h1>Create new Test</h1>
@@ -12,21 +12,3 @@
     <a href="{{ path('test_index') }}">back to list</a>
 {% endblock %}
 
-{% block _test_testWeekdayNotifications_row %}
-    <table>
-        <tr>
-            <th></th>
-            {% for notification in notifications %}
-                <th>{{ notification.name }}</th>
-            {% endfor %}
-        </tr>
-        {% for weekday in weekdays %}
-            <tr>
-                <td>{{ weekday.name }}</td>
-                {% for notification in notifications %}
-                    <td>{{ form_row(form.children[weekday.value ~ 'X' ~ notification.value]) }}</td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-{% endblock %}

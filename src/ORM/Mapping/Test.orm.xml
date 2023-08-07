@@ -11,7 +11,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="title" type="string" length="50"/>
-        <one-to-many field="testWeekdayNotifications" target-entity="App\Entity\TestWeekdayNotification" mapped-by="test">
+        <one-to-many field="testWeekdayNotifications" target-entity="App\Entity\TestWeekdayNotification" mapped-by="test" orphan-removal="true">
             <cascade>
                 <cascade-persist/>
             </cascade>

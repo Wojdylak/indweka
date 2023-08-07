@@ -1,0 +1,18 @@
+{% block _test_testWeekdayNotifications_row %}
+    <table class="table table-bordered">
+        <tr>
+            <th></th>
+            {% for notification in notifications %}
+                <th>{{ notification.name }}</th>
+            {% endfor %}
+        </tr>
+        {% for weekday in weekdays %}
+            <tr>
+                <td>{{ weekday.name }}</td>
+                {% for notification in notifications %}
+                    <td>{{ form_row(form.children[weekday.value ~ 'X' ~ notification.value]) }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

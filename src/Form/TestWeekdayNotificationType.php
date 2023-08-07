@@ -24,28 +24,21 @@ class TestWeekdayNotificationType extends AbstractType
     {
         $weekdayNotifications = $event->getData();
         $form = $event->getForm();
-        $dataCollection = [];
-        foreach ($weekdayNotifications as $weekdayNotification) {
-            $weekday = $weekdayNotification->getWeekday();
-            $notification = $weekdayNotification->getNotification();
-
-            $dataCollection[$weekday->value . 'X' . $notification->value] = $weekdayNotification;
-        }
-
 
         foreach (Weekdays::cases() as $weekday) {
-            foreach (Notification::cases() as $notification)
+            foreach (Notification::cases() as $notification) {
                 $form->add(
                     $weekday->value . 'X' . $notification->value,
                     WeekdayNotificationType::class,
                     [
-                        'label' => $weekday->name . ' ' . $notification->name,
-                        'required' => false,
-                        'weekday' => $weekday,
-                        'notification' => $notification,
-                        'data' => $dataCollection[$weekday->value . 'X' . $notification->value] ?? null,
+                        'row' => $weekday,
+                        'row_field_name' => 'weekday',
+                        'column' => $notification,
+                        'column_field_name' => 'notification',
+                        'collection' => $weekdayNotifications,
                     ]
                 );
+            }
         }
     }
 
