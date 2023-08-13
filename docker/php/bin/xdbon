@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+echo Enable XDebug;
+ln -sf /usr/local/etc/php/mods-available/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini

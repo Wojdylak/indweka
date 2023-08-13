@@ -10,3 +10,9 @@ down:
 
 bash:
 	docker compose exec php bash
+
+xdbon:
+	docker compose exec -u root php xdbon && docker compose restart php
+
+xdboff:
+	docker compose exec -u root php xdboff && docker compose restart php
