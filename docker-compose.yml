@@ -17,6 +17,7 @@ services:
       - ./:/var/www
 
   php:
+    image: indweka/php:8.2-fpm
     build:
       context: ./docker/php
     user: docker
