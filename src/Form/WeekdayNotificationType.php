@@ -8,13 +8,11 @@ use App\Enum\Weekdays;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class WeekdayNotificationType extends AbstractType
@@ -33,7 +31,7 @@ class WeekdayNotificationType extends AbstractType
                 'checked',
                 CheckboxType::class,
                 [
-                    'label' => '123',
+                    'label' => false,
                     'required' => false,
                 ]
             )
@@ -50,7 +48,7 @@ class WeekdayNotificationType extends AbstractType
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefaults([
