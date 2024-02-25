@@ -4,3 +4,4 @@ set -e
 
 echo Disable XDebug;
 rm -f /usr/local/etc/php/conf.d/xdebug.ini
+php-fpm-reload;

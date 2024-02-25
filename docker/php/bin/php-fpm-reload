@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "Reload php-fpm";
+kill -USR2 1;
